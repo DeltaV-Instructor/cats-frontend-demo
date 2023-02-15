@@ -1,7 +1,6 @@
 
 import React from "react";
 import axios from "axios";
-import "./App.css";
 
 let SERVER = process.env.REACT_APP_SERVER;
 
