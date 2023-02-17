@@ -3,6 +3,12 @@ import { Container, ListGroup, Button } from "react-bootstrap";
 
 
 class Cats extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      showUpdateForm: false,
+    }
+  }
 
   render(){
     console.log(this.props.cats);
@@ -35,7 +41,7 @@ class Cat extends Cats {
          onClick={() => this.props.deleteCats(this.props.cat._id)}>Delete Cat</Button>
          <Button 
          variant="success"
-         onClick={() => this.props.updateCats(this.props.cat._id)}>Update Cat</Button>
+         onClick={() => this.state({showUpdateForm: true})}>Update Cat</Button>
       </ListGroup.Item>
     );
   }
