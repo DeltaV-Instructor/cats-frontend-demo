@@ -34,6 +34,7 @@ class Cat extends Cats {
 
   render(){
     return(
+      <>
       <ListGroup.Item>
         {this.props.cat.name} is {this.props.cat.color}
         <Button 
@@ -43,6 +44,11 @@ class Cat extends Cats {
          variant="success"
          onClick={() => this.state({showUpdateForm: true})}>Update Cat</Button>
       </ListGroup.Item>
+      {
+        this.state.showUpdateForm &&
+        <UpdateCatForm  cat={this.props.cat}/>
+      }
+      </>
     );
   }
 }
