@@ -65,8 +65,10 @@ class App extends React.Component {
     }
   };
 
-
-updateCats = async () => {
+//we need to send the whole cat where does it live?
+updateCats = async (catToUpdate) => {
+//create url to server to update cat add the id from our args[]
+let updateURL = `${SERVER}/cats/${catToUpdate._id}`;
 
 };
 
