@@ -1,6 +1,23 @@
 import React from "react";
+import { Button, Container, Form } from "react-bootstrap";
 
 class UpdateCatForm extends React.Component {
+
+  // handle form submit 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    let catToUpdate = {
+      name: event.target.name.value || this.props.cat.name,
+      color: event.target.color.value || this.props.cat.color,
+      spayNeuter: event.target.spayNeuter.checked,
+      location: event.target.location.value || this.props.cat.location,
+      //lastly
+      _id: this.props.cat._id,
+      __v: this.props.cat.__v,
+    };
+    console.log('updated cat: ', catToUpdate);
+    this.props.updateCats(catToUpdate);
+  };
   render() {
     return (
       <Container>
@@ -15,10 +32,11 @@ class UpdateCatForm extends React.Component {
           </Form.Group>
           <Form.Group controlId="location">
             <Form.Label>Location</Form.Label>
+            {/* defaultValue={this.props.cat.location} */}
             <Form.Control type="text" placeholder={this.props.cat.location} />
           </Form.Group>
           <Form.Group controlId="spayNeuter">
-            <Form.Check type="checkbox" label="spay-neuter" />
+            <Form.Check type="checkbox" label="spay-neuter" defaultChecked={this.props.cat.spayNeuter}/>
           </Form.Group>
           <Button type="submit">Update Cat</Button>
         </Form>

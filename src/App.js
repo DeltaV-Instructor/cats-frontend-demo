@@ -19,7 +19,7 @@ class App extends React.Component {
   getCats = async () => {
     try {
       let results = await axios.get(`${SERVER}/cats`);
-      console.log("results from api", results);
+      // console.log("results from api", results);
       this.setState({
         cats: results.data,
       });
@@ -36,7 +36,7 @@ class App extends React.Component {
       spayNeuter: event.target.spayNeuter.checked,
       location: event.target.location.value,
     };
-    console.log(newCat);
+    // console.log(newCat);
     this.postCat(newCat);
   };
 
@@ -72,12 +72,15 @@ class App extends React.Component {
       let updateURL = `${SERVER}/cats/${catToUpdate._id}`;
       //dont forget to add the 'body' of the request with the cat {}.
       let newUpdatedCat = await axios.put(updateURL, catToUpdate);
+      // console.log("🚀 ~ file: App.js:75 ~ App ~ updateCats= ~ newUpdatedCat", newUpdatedCat);
 
       let updatedCatArray = this.state.cats.map(existingCat => {
         return existingCat._id === catToUpdate._id
         ? newUpdatedCat.data
         : existingCat
       });
+      console.log("🚀 ~ file: App.js:82 ~ App ~ updatedCatArray ~ updatedCatArray", updatedCatArray)
+      
       //now lets take our cat updated or the exsisting one
       this.setState({
         cats: updatedCatArray,

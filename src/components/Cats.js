@@ -11,7 +11,7 @@ class Cats extends React.Component {
   }
 
   render() {
-    console.log(this.props.cats);
+    // console.log(this.props.cats);
     let cats = this.props.cats.map((cat) => (
       <Cat
         cat={cat}
@@ -43,12 +43,17 @@ class Cat extends Cats {
           </Button>
           <Button
             variant="success"
-            onClick={() => this.state({ showUpdateForm: true })}
+            
+            onClick={() => this.setState({ showUpdateForm: true })}
           >
             Update Cat
           </Button>
         </ListGroup.Item>
-        {this.state.showUpdateForm && <UpdateCatForm cat={this.props.cat} />}
+        {this.state.showUpdateForm && 
+        <UpdateCatForm 
+        cat={this.props.cat} 
+        updateCats={this.props.updateCats}
+        />}
       </>
     );
   }
