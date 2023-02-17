@@ -17,7 +17,6 @@ class App extends React.Component {
   }
 
   getCats = async () => {
-    // console.log(SERVER);
     try {
       let results = await axios.get(`${SERVER}/cats`);
       console.log("results from api", results);
@@ -28,7 +27,7 @@ class App extends React.Component {
       console.log("we have an error: ", error.response.data);
     }
   };
-  //post new cat
+
   handleCatSubmit = async (event) => {
     event.preventDefault();
     let newCat = {
@@ -42,14 +41,9 @@ class App extends React.Component {
   };
 
   postCat = async (newCatObject) => {
-    //we can post to our db
     try {
       let url = `${SERVER}/cats`;
       let createdCat = await axios.post(url, newCatObject);
-      console.log(
-        "🚀 ~ file: App.js:50 ~ App ~ postCat= ~ createCat",
-        createdCat
-      );
       this.setState({
         cats: [...this.state.cats, createdCat.data],
       });
@@ -58,29 +52,25 @@ class App extends React.Component {
     }
   };
 
-  //delete cat
   deleteCats = async (id) => {
     try {
-      //create our route to server 
       let url = `${SERVER}/cats/${id}`;
       await axios.delete(url);
-      //now its out of the database
-      //lets now take it out of state
       let updatedCats = this.state.cats.filter((cat) => cat._id !== id);
       this.setState({
         cats: updatedCats,
       })
     } catch (error) {
       console.log("we have an error: ", error.response.data);
-
     }
   };
 
 
+updateCats = async () => {
+
+};
 
 
-
-  //net effect is that when the site loads (I should say this specific componenet loads), the data will be displayed the getCats will be invoked when component mounts after all its tasks.
   componentDidMount() {
     this.getCats();
   }
