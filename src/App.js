@@ -59,19 +59,23 @@ class App extends React.Component {
       let updatedCats = this.state.cats.filter((cat) => cat._id !== id);
       this.setState({
         cats: updatedCats,
-      })
+      });
     } catch (error) {
       console.log("we have an error: ", error.response.data);
     }
   };
 
-//we need to send the whole cat where does it live?
-updateCats = async (catToUpdate) => {
-//create url to server to update cat add the id from our args[]
-let updateURL = `${SERVER}/cats/${catToUpdate._id}`;
-
-};
-
+  //we need to send the whole cat where does it live?
+  updateCats = async (catToUpdate) => {
+    try {
+      //create url to server to update cat add the id from our args[]
+      let updateURL = `${SERVER}/cats/${catToUpdate._id}`;
+      //dont forget to add the 'body' of the request with the cat {}.
+      let newUpdatedCat = await axios.put(updateURL, catToUpdate);
+    } catch (error) {
+      console.log("we have an error: ", error.response.data);
+    }
+  };
 
   componentDidMount() {
     this.getCats();
@@ -86,10 +90,7 @@ let updateURL = `${SERVER}/cats/${catToUpdate._id}`;
           <div>
             {this.state.cats.length > 0 && (
               <>
-                <Cats
-                 cats={this.state.cats} 
-                 deleteCats={this.deleteCats}
-                 />
+                <Cats cats={this.state.cats} deleteCats={this.deleteCats} />
               </>
             )}
           </div>
