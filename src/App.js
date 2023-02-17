@@ -72,6 +72,17 @@ class App extends React.Component {
       let updateURL = `${SERVER}/cats/${catToUpdate._id}`;
       //dont forget to add the 'body' of the request with the cat {}.
       let newUpdatedCat = await axios.put(updateURL, catToUpdate);
+
+      let updatedCatArray = this.state.cats.map(existingCat => {
+        return existingCat._id === catToUpdate._id
+        ? newUpdatedCat.data
+        : existingCat
+      });
+      //now lets take our cat updated or the exsisting one
+      this.setState({
+        cats: updatedCatArray,
+      });
+      //now lets add a button.......
     } catch (error) {
       console.log("we have an error: ", error.response.data);
     }
