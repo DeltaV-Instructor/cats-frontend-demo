@@ -101,7 +101,11 @@ class App extends React.Component {
           <div>
             {this.state.cats.length > 0 && (
               <>
-                <Cats cats={this.state.cats} deleteCats={this.deleteCats} />
+                <Cats 
+                cats={this.state.cats}
+                deleteCats={this.deleteCats} 
+                updateCats={this.updateCats}  
+                />
               </>
             )}
           </div>

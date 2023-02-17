@@ -7,7 +7,12 @@ class Cats extends React.Component {
   render(){
     console.log(this.props.cats);
     let cats = this.props.cats.map((cat) => (
-      <Cat cat={cat} key={cat._id} deleteCats={this.props.deleteCats}/>
+      <Cat 
+      cat={cat} 
+      key={cat._id} 
+      deleteCats={this.props.deleteCats}
+      updateCats={this.props.updateCats}  
+      />
     
     ));
     return(
@@ -26,8 +31,11 @@ class Cat extends Cats {
       <ListGroup.Item>
         {this.props.cat.name} is {this.props.cat.color}
         <Button 
-         variant="success"
+         variant="warning"
          onClick={() => this.props.deleteCats(this.props.cat._id)}>Delete Cat</Button>
+         <Button 
+         variant="success"
+         onClick={() => this.props.updateCats(this.props.cat._id)}>Update Cat</Button>
       </ListGroup.Item>
     );
   }
