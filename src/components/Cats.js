@@ -43,17 +43,17 @@ class Cat extends Cats {
           </Button>
           <Button
             variant="success"
-            
             onClick={() => this.setState({ showUpdateForm: true })}
           >
             Update Cat
           </Button>
         </ListGroup.Item>
-        {this.state.showUpdateForm && 
-        <UpdateCatForm 
-        cat={this.props.cat} 
-        updateCats={this.props.updateCats}
-        />}
+        {this.state.showUpdateForm && (
+          <UpdateCatForm
+            cat={this.props.cat}
+            updateCats={this.props.updateCats}
+          />
+        )}
       </>
     );
   }
